@@ -65,3 +65,23 @@ export function calculateNominalResult(
 ) {
   return castDecimals(totalAllocatedAmount * resultInPercentage);
 }
+
+export function calculateResultBetweenAssets(
+  assetName1: string,
+  assetResult1: string,
+  assetName2: string,
+  assetResult2: string,
+) {
+  const assetResult1AsNumber = Number(assetResult1)
+  const assetResult2AsNumber = Number(assetResult2)
+
+  if (assetResult1AsNumber > assetResult2AsNumber) {
+    return assetName1
+  }
+
+  if (assetResult1AsNumber < assetResult2AsNumber) {
+    return assetName2
+  }
+
+  return "Empate";
+}

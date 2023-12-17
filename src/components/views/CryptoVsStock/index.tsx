@@ -8,6 +8,7 @@ import {
 } from '@/helpers/general';
 import {
   calculateNominalResult,
+  calculateResultBetweenAssets,
   calculateTotalAllocatedAmount,
   getResult,
   processPrices,
@@ -117,11 +118,11 @@ export default function CryptoVsStockView() {
             <br />
             <div>
               Resultado:{' '}
-              <S.FinalResult
-                finalResult={checkResultIsGainOrLoss(cryptoResult)}
+              <S.AssetResult
+                AssetResult={checkResultIsGainOrLoss(cryptoResult)}
               >
                 {cryptoResult}%
-              </S.FinalResult>
+              </S.AssetResult>
             </div>
           </div>
         </div>
@@ -159,13 +160,24 @@ export default function CryptoVsStockView() {
             <br />
             <div>
               Resultado:{' '}
-              <S.FinalResult finalResult={checkResultIsGainOrLoss(stockResult)}>
+              <S.AssetResult AssetResult={checkResultIsGainOrLoss(stockResult)}>
                 {stockResult}%
-              </S.FinalResult>
+              </S.AssetResult>
             </div>
           </div>
         </div>
       </S.ResultSection>
+      <S.FinalResult>
+        Vencedor: {" "}
+        <span>
+          {calculateResultBetweenAssets(
+            searchCryptoName ? searchCryptoName : '',
+            cryptoResult,
+            searchStockName ? searchStockName : '',
+            stockResult
+          )}
+        </span>
+      </S.FinalResult>
       <S.ButtonSection>
         <Button
           label="Voltar"
